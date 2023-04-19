@@ -1,40 +1,32 @@
 <template>
-  <div class="box">
-    <div class="card">
+  <div class="">
+    <div class="flex flex-row justify-items-end">
       <img src="../assets/svgs/clinical.svg" alt="" width="70" />
-      <div class="card-header">
-        Medical Officer in Energy Industry (Private Company) (2019-2020)
-      </div>
-      <div class="card-content">
-        Oversaw implementation of occupational safety standards on wo offshore
-        drilling units with 400 employees.
+      <h4 class="text-2xl mt-7">Clinical Experience</h4>
+    </div>
+    <div class="grid grid-cols-2 gap-6">
+      <div v-for="job in jobs" :key="job" class="my-2 shadow-lg shadow-slate-400 w-auto">
+       <div class="flex flex-row justify-normal gap-12 bg-slate-200 py-2 px-6 rounded-t-lg">
+         <h4 class="font-bold mb-6">{{ job.title }}</h4>
+         <p>{{ job.period }}</p>
+       </div>
+       <div class="bg-slate-100 py-2 px-6">
+        <p class="italic">{{ job.place }}</p>
+        <ol v-for="x in job.geo" :key="x">
+          <li>{{ x }}</li>
+        </ol>
+        <p>{{ job.definition }}</p>
+       </div>
+       
       </div>
     </div>
-    <div class="card">
-      Internal Medicine Ward General Physician (Namazi Hospital) (2018-2019)
-    </div>
-    Facilitated care of critically ill cancer patients with a team of 2
-    attending physicians and 10 nurses. Neonatal Resuscitation/Transport Team
-    Manager (Namazi Hospital) (2017-2018) Coordinated safe transportation of
-    neonates in critical conditions within/between university centers with a
-    team of 8 nurses. Emergency Department General Practitioner (Public
-    Hospital) (2016-2017) Performed triage and initial assessment of medical and
-    surgical emergencies at 20-bed emergency department public hospital covering
-    a populace of 200,000 Saqqez, Kurdistan Military General Physician
-    (Mandatory Public Service) (2016-2017) Supervised and implemented disease
-    prevention strategies, early diagnosis & treatment plans for common
-    presenting diseases in a population of 3000 military personnel/families at
-    an Iranian military ground forces base Family Physician/Primary Health Care
-    Consultant (2016) Monitored health status of a rural population of 10,000
-    mainly by assisting in family planning, immunization, pediatric care,
-    chronic diseases including diabetes and hypertension
   </div>
+      
 </template>
 
-<script>
-export default {
-  name: "Clinical",
-};
+<script setup>
+let { data: jobs } = await useFetch("/api/clinics");
+console.log(jobs);
 </script>
 
 <style></style>
